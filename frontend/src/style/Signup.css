@@ -1,0 +1,73 @@
+.signupContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* margin: 10px; */
+    color: #ffffff;
+    /* background-color: var(--background); */
+}
+
+.signUp {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--foreground);
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    /* background-color: #3f3f3f; */
+}
+
+.signUp i{
+    float: right;
+    transition: 0.1s;
+}
+
+.signUp i:hover{
+    transform: scale(1.1);
+}
+
+.signUp p, label{
+    margin: 10px;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.signupHead h1 {
+    text-align: center;
+}
+
+.formDetails h2{
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.signupBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* max-width: 400px; */
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+.formDetails{
+    display: flex;
+}
+
+.userdetails, .bankDetails{
+    padding: 20px;
+}
+
+.submitBtn{
+    max-width: 200px;
+    width: 90%;
+    background-color: var(--btnColor2);
+    color: var(--btnInClr);
+}
+
+#acceptIp{
+    width: 20px;
+    padding: 0;
+}

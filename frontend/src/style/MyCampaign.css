@@ -1,0 +1,215 @@
+.myCampaignsContainer {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.myCampaignsContainer button {
+  width: 50%;
+}
+
+.myCamaignTile {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0px;
+  padding: 4px;
+  margin: 0px 6px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  align-items: center;
+  border: 1px #ccc;
+  border-bottom-style: solid;
+  /* cursor: pointer; */
+}
+
+.myCamaignTile img {
+  width: 75px;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.tileLeft,
+.tileRight {
+  display: flex;
+  margin: 10px 30px;
+  align-items: center;
+}
+
+.tileLeft img {
+  border-radius: 6px;
+}
+
+.tileTextContent {
+  margin-left: 10px;
+}
+
+.myCamaignTile h4 {
+  font-size: 1em;
+}
+
+.myCamaignTile p {
+  font-size: 0.9em;
+}
+
+.loadingSpin {
+  margin-right: 30px;
+}
+
+.myCamaignTile .btn {
+  max-width: 200px;
+}
+
+/* Toogle Switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: var(--orange);
+}
+
+input:focus+.slider {
+  /* box-shadow: 0 0 1px var(--orange); */
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Cmampaign Image Tile */
+
+.rowForCampaignImages {
+  display: grid;
+  margin: 20px;
+  padding: 0px 0px;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+.campaignImageTile {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 4px;
+  margin: 16px 6px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  align-items: center;
+}
+
+
+.campaignImageTile {
+  border-radius: 4px;
+  margin: 10px 6px;
+  text-align: center;
+  padding: 0px;
+  /* box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  /* cursor: pointer; */
+}
+
+.campaignImageTile img {
+  /* max-width: 280px; */
+  max-width: 100%;
+  border-radius: 4px;
+  aspect-ratio: 4 / 2.7;
+  object-fit: cover;
+}
+
+.delteImgBtn {
+  position: relative;
+  bottom: -80px;
+  right: 50px;
+  background-color: #00000013;
+  color: var(--orange);
+}
+
+.withdrawBtn {
+  font-size: 1em;
+  padding: 10px;
+  margin: 0;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: none;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.withdrawBtn:hover{
+  transform: scale(1.05);
+}
+
+
+/* CSS for withdrawal popup */
+.withdrawalPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+.withdrawalPopup i{
+  float: right;
+  cursor: pointer;
+}
+
+.withdrawalPopup form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.withdrawalPopup input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

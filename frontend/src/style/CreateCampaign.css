@@ -1,0 +1,51 @@
+.createCampaignHead, .createCampaignDetails{
+    text-align: center;
+}
+
+.createCampaignDetails input:hover, .fileContainer button:hover{
+    transform: scale(1);
+}
+
+.createCampaignDetails p{
+    font-size: 16px;
+}
+
+.createCampaignDetails .submitBtn{
+    margin-top: 10px;
+}
+
+.fileContainer{
+    width: 90%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 12px;
+    color: #333;
+    margin: 6px auto;
+    transition: 0.1s;
+}
+
+.fileContainer:hover {
+    transform: scale(1.05);
+}
+
+.fileContainer p{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.redBtn{
+    background-color: var(--redPrimary);
+    color: var(--btnInClr);
+}
+
+.greenBtn{
+    background-color: var(--btnColor2);
+    color: var(--btnInClr);
+    margin: 5px 0px;
+}
+
+.loadingContainer{
+    width: 50px;
+    margin: auto;
+}

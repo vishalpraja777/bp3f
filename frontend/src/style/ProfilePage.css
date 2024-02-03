@@ -1,0 +1,93 @@
+.profilePage {
+    /* margin: auto;
+    display: flex;
+    justify-content: center;
+    background-color: var(--background);
+    height: 100vh;
+    color: white;
+    align-items: center; */
+    color: #222222;
+}
+
+.profileContent {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.userSection,
+.bankSection {
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    color: #333333;
+}
+
+.userSection img {
+    width: 150px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 100px;
+}
+
+.statusText {
+    padding-left: 20px;
+}
+
+.userSection div {
+    margin-right: 20px;
+}
+
+.buttonContainer button {
+    margin: 10px 10px;
+}
+
+.bankSection div {
+    margin-right: 30px;
+}
+
+.divider {
+    width: 90%;
+    height: 1px;
+    margin: 20px 0;
+    background-color: #999999;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: var(--foreground);
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.user-details,
+.bank-details {
+    margin-bottom: 30px;
+}
+
+
+
+h2 {
+    /* color: #333; */
+}
+
+.user-info,
+.bank-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+span {
+    /* display: block; */
+    /* margin-top: 5px; */
+    /* color: #555; */
+}

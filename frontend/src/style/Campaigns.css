@@ -1,0 +1,49 @@
+.campaignsContainer {
+  padding: 1%;
+  text-align: center;
+}
+
+.rowForCampaignTile {
+  display: grid;
+  margin: 20px;
+  padding: 0px 0px;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.campaignTile {
+  /* flex-basis: 30%; */
+  border-radius: 10px;
+  margin: 16px 6px;
+  text-align: center;
+  padding: 12px;
+  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.campaignTile img {
+  /* max-width: 280px; */
+  max-width: 100%;
+  border-radius: 10px;
+  aspect-ratio: 4 / 2.7;
+  object-fit: cover;
+}
+
+.campaignTile:hover {
+  box-shadow: 0 8px 32px 0px rgba(95, 65, 65, 0.4);
+  transform: scale(1.02, 1.02);
+  transition: 0.2s;
+}
+
+.campaignTile h3 {
+  padding-top: 10px;
+}
+
+.campaignTile p {
+  padding: 4px 10px;
+  /* text-align: justify; */
+}
+
+.campaignTile button{
+  margin-top: 10px;
+}

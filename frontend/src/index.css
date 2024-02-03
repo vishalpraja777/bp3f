@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    --redPrimary: #D00000;
+    /* --orange: #DC2F02; */
+    --orange: #FF6700;
+    --orangeLight: #E85D08;
+    --yellowlight1: #F48C06;
+    --yellowlight2: #FAA307;
+    --yellowPrimary: #FFBA08;
+
+    --btnColor1: var(--orange);
+    --btnColor2: var(--orange);
+    /* --navbarColor: var(--yellowPrimary); */
+    --navbarColor: #00000014;
+    /* --navbarColor: #FFFDF0; */
+    --navbarHeader: var(--orange);
+    --footer: var(--orange);
+
+    --background: var(--earthyBlue);
+    --foreground: var(--primary);
+
+    --darkBlue: #242582;
+    --darkerBlue: #2F2FA2;
+    --white: #f6f6f6;
+    --btnInClr: #ffffff;
+    --earthyBlue: #659DBD;
+    --primary: #80BCBD;
+    font-family: "Trirong", sans-serif;
+
+
+}
+
+.homepageImage{
+    max-width: 100%;
+    /* height: 100vh; */
+    object-fit:cover;
+    /* aspect-ratio: 4/3; */
+}
+
+.btn {
+    height: 3em;
+    border-radius: 8px;
+    border: none;
+    padding: 0 1em;
+    transition: 0.1s;
+    background-color: #cecece;
+    margin: 0 10px;
+    cursor: pointer;
+    /* background-image: linear-gradient(to top right, var(--redPrimary), var(--orangeLight) ); */
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:disabled {
+    background-color: rgb(192, 192, 192);
+    color: #7d7d7d;
+}
+
+input,
+textarea {
+    width: 90%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    color: #333;
+    resize: none;
+    margin: 6px 0;
+    transition: 0.1s;
+}
+
+.selectOptions {
+    width: 95%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    color: #333;
+    resize: none;
+    margin: 6px 0;
+    transition: 0.1s;
+}
+
+.selectOptions option {
+    color: #333;
+}
+
+/* input:hover {
+    transform: scale(1.05);
+} */
+
+a {
+    /* text-decoration: none; */
+    color: inherit;
+}
+
+.content {
+    /* min-height: calc(100vh - 100px);
+    padding-bottom: 100px;  */
+}
+
+.loading {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}

@@ -1,0 +1,56 @@
+.navbarHeader{
+    background-color: var(--navbarColor);
+    padding: 20px 0;
+}
+
+.navbarMain {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.navbarLeft h1{
+    color: var(--navbarHeader);
+    cursor: pointer;
+}
+
+.navbarRight {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.createCampaignBtn{
+    background-color: var(--btnColor1);
+    color: var(--btnInClr);
+}
+
+.signupBtn, .loginBtn{
+    background-color: var(--btnColor2);
+    color: var(--btnInClr);
+    margin: 0 0 0 8px;
+}
+
+.afterAuthSection{
+    display: flex;
+    align-items: center;
+}
+
+.profilePic{
+    align-items: center;
+    transition: 0.2s;
+}
+
+.profilePic img{
+    width: 40px;
+    margin: 0 12px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: 100px;
+}
+
+.profilePic:hover{
+    transform: scale(1.1);
+}
