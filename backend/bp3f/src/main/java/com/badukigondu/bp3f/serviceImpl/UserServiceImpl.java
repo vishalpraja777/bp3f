@@ -159,6 +159,12 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<String> updateInfo(Long id, Map<String, String> requestMap) {
 		try {
 
+			if (id != userDao.findByEmail(jwtUtil.getUserEmail()).getId() && !jwtUtil.isAdmin()) {
+				log.info("Not Same User");
+				return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG,
+						HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+
 			if (validateRequestMap(requestMap)) {
 				User user = userDao.findById(id).get();
 
@@ -198,6 +204,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity<String> updateProfilePic(Long id, Map<String, String> requestMap) {
 		try {
+
+			if (id != userDao.findByEmail(jwtUtil.getUserEmail()).getId() && !jwtUtil.isAdmin()) {
+				log.info("Not Same User");
+				return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG,
+						HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+
 			if(requestMap.containsKey("imageLink")){
 				userDao.updateProfilePic(id, requestMap.get("imageLink"));
 				return Bp3fUtils.getResponseEntity("Profile Pic Updated", HttpStatus.OK);

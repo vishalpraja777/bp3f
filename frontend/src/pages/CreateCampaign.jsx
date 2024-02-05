@@ -236,7 +236,7 @@ const CreateCampaign = () => {
                             })}
                         </select>
 
-                        <textarea name="description" id="descriptionIp" rows="4" placeholder="Enter the description"
+                        <textarea name="description" id="descriptionIp" rows="6" placeholder="Enter the description"
                             value={description} onChange={(e) => { setDescription(e.target.value) }} >
 
                         </textarea>
@@ -272,6 +272,7 @@ const CreateCampaign = () => {
                             }
                         </div>
 
+                        <label>Last Date</label>
                         <input type="date" name="requiredBy" id="requiredByIp" value={requiredBy} onChange={(e) => { handleDateChange(e) }} />
                         <input type="submit" value="Create Campaign" className="submitBtn btn" onClick={(e) => { handleCreateSubmit(e) }} />
                     </form>

@@ -31,7 +31,15 @@ Currently, two official plugins are available:
 - Callback for payment
 - Loading Animation
 - Delete campaign
-- Withdraw amount
+
+- Withdraw amount list in view campaign page
+- Long Description -D
+- Admin Add category fom database
+- Razorpay Page 
+
+- Database:
+- Category - id, category, status
+- Withdrawal Approval - id, userId, campaignId, approvedDate, amount, approvedStatus
 
 # S3
 - Add the following properties in application.properties file:
@@ -59,6 +67,11 @@ Currently, two official plugins are available:
 - Add Elastic IP addresses -> Associate it with the ec2 instance
 
 - http://13.235.185.164:8080/
+
+- S3 bucket
+- ec2 instance
+- Target group
+- Load balancer
 
 # Installing mysql on ubuntu:
 - apt-get update
@@ -92,3 +105,6 @@ WantedBy=multi-user.target
 - - systemctl stop bp3f
 - - systemctl restart bp3f
 - - systemctl status bp3f
+
+# React App on ec2
+- https://medium.com/@rizkiprass/step-by-step-guide-deploying-a-react-app-on-aws-ec2-b2965af05aa4

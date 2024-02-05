@@ -132,6 +132,12 @@ public class CampaignServiceImpl implements CampaignService {
 
             Campaign campaign = campaignDao.findById(id).get();
 
+            if (campaign.getUser().getId() != userDao.findByEmail(jwtUtil.getUserEmail()).getId() && !jwtUtil.isAdmin()) {
+                log.info("Not Same User");
+                return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG,
+                        HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
             User user = userDao.findByEmail(jwtUtil.getUserEmail());
 
             log.info("User {}", user.getId());
@@ -184,6 +190,12 @@ public class CampaignServiceImpl implements CampaignService {
 
             if (validateCampaignMap(requestMap)) {
                 Campaign campaign = campaignDao.findById(id).get();
+
+                if (campaign.getUser().getId() != userDao.findByEmail(jwtUtil.getUserEmail()).getId() && !jwtUtil.isAdmin()) {
+                    log.info("Not Same User");
+                    return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG,
+                            HttpStatus.INTERNAL_SERVER_ERROR);
+                }
 
                 campaign.setTitle(requestMap.get("title"));
                 campaign.setDescription(requestMap.get("description"));

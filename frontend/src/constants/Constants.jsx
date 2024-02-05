@@ -17,7 +17,8 @@ const earthyGreen = "#8D8741"
 const earthyBlue = "#659DBD"
 const earthySkin = "#DAAD86"
 
-export const BASE_API_URL = "http://localhost:8080/"
+// export const BASE_API_URL = "http://localhost:8080/"
+export const BASE_API_URL = "http://13.235.185.164:8080/"
 
 export const genderOptions = ["Male", "Female", "Other"];;
 

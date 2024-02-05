@@ -17,16 +17,14 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@NamedQuery(name = "WithdrawalRequest.findByCampaignId", query = "select new com.badukigondu.bp3f.wrapper.WithdrawalRequestWrapper(w.id, w.withdrawAmount, w.approved, w.requestDate, w.campaign, w.user) from WithdrawalRequest w where w.campaign.id = :campaignId and w.approved = false")
-
-@NamedQuery(name = "WithdrawalRequest.updateApproved", query = "update WithdrawalRequest w set w.approved=:approved where w.id=:id")
+@NamedQuery(name = "WithdrawalApproval.findByCampaignId", query = "select new com.badukigondu.bp3f.wrapper.WithdrawalApprovalWrapper(w.id, w.withdrawAmount, w.approvedStatus, w.approvedDate, w.campaign, w.user) from WithdrawalApproval w where w.campaign.id = :campaigId")
 
 @Data
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "withdrawal_request")
-public class WithdrawalRequest {
+@Table(name = "Withdrawal_approval")
+public class WithdrawalApproval {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,12 +36,12 @@ public class WithdrawalRequest {
     @Column(name = "withdrawal_amount")
     private Long withdrawAmount;
 
-    @Column(name = "approved")
-    private Boolean approved;
+    @Column(name = "approvedstatus")
+    private boolean approvedStatus;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "requestdate")
-    private Date requestDate;
+    @Column(name = "approveddate")
+    private Date approvedDate;
 
     @ManyToOne
     private Campaign campaign;

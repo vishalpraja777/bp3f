@@ -105,21 +105,21 @@ const DonatePage = () => {
             isValid = false;
         }
         // Validate name
-        else if (!name.trim()) {
-            errors = "Name is required";
-            isValid = false;
-        }
+        // else if (!name.trim()) {
+        //     errors = "Name is required";
+        //     isValid = false;
+        // }
         // Validate email
-        else if (!email.trim() || !emailRegex.test(email)) {
-            errors = "Valid email is required";
-            isValid = false;
-        }
+        // else if (!email.trim() || !emailRegex.test(email)) {
+        //     errors = "Valid email is required";
+        //     isValid = false;
+        // }
 
         // Validate mobile number
-        else if (!mobileNumber.trim() || !mobileRegex.test(mobileNumber)) {
-            errors = "Valid 10-digit mobile number is required";
-            isValid = false;
-        }
+        // else if (!mobileNumber.trim() || !mobileRegex.test(mobileNumber)) {
+        //     errors = "Valid 10-digit mobile number is required";
+        //     isValid = false;
+        // }
 
         // Additional validations can be added for other fields here...
 
@@ -198,7 +198,7 @@ const DonatePage = () => {
                             <label htmlFor="acceptIp">Anonymous Donation</label>
                             <br />
 
-                            <input type="submit" value="Proceed To Pay" className="submitBtn btn" onClick={(e) => { handleDonateSubmit(e) }} />
+                            <input type="submit" value="Donate" className="submitBtn btn" onClick={(e) => { handleDonateSubmit(e) }} />
                         </form>
                     </div>
 
