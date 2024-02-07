@@ -17,8 +17,8 @@ import lombok.Data;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "campaign_category")
-public class CampaignCategory implements Serializable  {
+@Table(name = "category_options")
+public class CategoryOptions implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,6 +31,6 @@ public class CampaignCategory implements Serializable  {
     private String category;
 
     @Column(name = "status")
-    private String status;
+    private boolean status;
 
 }

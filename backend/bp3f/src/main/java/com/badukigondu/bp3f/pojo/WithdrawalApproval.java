@@ -1,5 +1,6 @@
 package com.badukigondu.bp3f.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -24,7 +25,7 @@ import lombok.Data;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "Withdrawal_approval")
-public class WithdrawalApproval {
+public class WithdrawalApproval implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 

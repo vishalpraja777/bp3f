@@ -11,20 +11,32 @@
 .myCamaignTile {
   display: flex;
   justify-content: space-between;
-  border-radius: 0px;
+  border-radius: 8px;
   padding: 4px;
-  margin: 0px 6px;
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  margin: 8px 6px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   align-items: center;
   border: 1px #ccc;
   border-bottom-style: solid;
   /* cursor: pointer; */
 }
 
+.userDonatedTile{
+  display: flex;
+  justify-content: space-between;
+  /* border-radius: 8px; */
+  padding: 4px 10px;
+  margin: 0px 6px;  
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  align-items: center;
+  border: 1px #ccc;
+  border-bottom-style: solid;
+}
+
 .myCamaignTile img {
   width: 75px;
   object-fit: cover;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
 }
 
 .tileLeft,
@@ -154,7 +166,7 @@ input:checked+.slider:before {
   /* max-width: 280px; */
   max-width: 100%;
   border-radius: 4px;
-  aspect-ratio: 4 / 2.7;
+  /* aspect-ratio: 16 / 9; */
   object-fit: cover;
 }
 

@@ -145,7 +145,8 @@ const CampaignDetail = () => {
                         <div className="campaignDetailBody">
                             <div className="leftContainer">
                                 <img src={campaignData.imageLink} alt="Campaign Image" />
-                                <p>Category: {campaignData.category}</p>
+                                <p><b>Category: {campaignData.category}</b></p>
+                                <p><b>Description:</b></p>
                                 <p>{campaignData.description}</p>
                             </div>
                             <div className="textDetail">
@@ -157,10 +158,10 @@ const CampaignDetail = () => {
 
                                 <div className="socialLinks">
                                     <h3>Share On Social Media</h3>
-                                    <i className="fa-brands fa-facebook-f socialMediaBtn" onClick={() => shareOnSocialMedia("facebook")}></i>
-                                    <i className="fa-brands fa-instagram socialMediaBtn" onClick={() => shareOnSocialMedia("instagram")}></i>
-                                    <i className="fa-brands fa-whatsapp socialMediaBtn" onClick={() => shareOnSocialMedia("whatsapp")}></i>
-                                    <i className="fa-brands fa-twitter socialMediaBtn" onClick={() => shareOnSocialMedia("twitter")}></i>
+                                    <i className="fa-brands fa-facebook-f socialMediaBtn fb" onClick={() => shareOnSocialMedia("facebook")}></i>
+                                    <i className="fa-brands fa-instagram socialMediaBtn ig" onClick={() => shareOnSocialMedia("instagram")}></i>
+                                    <i className="fa-brands fa-whatsapp socialMediaBtn wa" onClick={() => shareOnSocialMedia("whatsapp")}></i>
+                                    <i className="fa-brands fa-twitter socialMediaBtn tw" onClick={() => shareOnSocialMedia("twitter")}></i>
                                     {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("facebook")}>Share on Facebook</button> */}
                                     {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("whatsapp")}>Share on WhatsApp</button> */}
                                     {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("instagram")}>Share on Instagram</button> */}

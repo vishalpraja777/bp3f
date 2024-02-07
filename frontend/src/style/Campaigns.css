@@ -25,7 +25,7 @@
   /* max-width: 280px; */
   max-width: 100%;
   border-radius: 10px;
-  aspect-ratio: 4 / 2.7;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
@@ -40,10 +40,10 @@
 }
 
 .campaignTile p {
-  padding: 4px 10px;
-  /* text-align: justify; */
+  padding: 2px 10px;
+  text-align: justify;
 }
 
 .campaignTile button{
-  margin-top: 10px;
+  margin: 10px;
 }

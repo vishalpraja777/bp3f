@@ -312,7 +312,8 @@ const viewCampaignByCreater = () => {
                                 <img src={campaignData.imageLink} alt="Campaign Image" />
                                 <i className="fa-solid fa-edit" onClick={(e) => { setShowImageUploadPopup(true) }}> Change Image</i>
 
-                                <p>Category: {campaignData.category}</p>
+                                <p><b>Category: {campaignData.category}</b></p>
+                                <p><b>Description:</b></p>
                                 <p>{campaignData.description}</p>
                             </div>
                             <div className="textDetail">

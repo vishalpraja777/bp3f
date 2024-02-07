@@ -146,14 +146,14 @@ const DonatePage = () => {
     const handleAmountChange = (e) => {
         e.preventDefault();
         setAmount(e.target.value)
-        const res = parseInt(e.target.value) + parseInt(e.target.value) * (commission / 100);
+        const res = parseInt(e.target.value) + parseInt(e.target.value) * ((parseInt(commission) + 3) / 100);
         setTotalAmount(res)
     }
 
     const handleCommissionChange = (e) => {
         e.preventDefault();
         setCommission(e.target.value)
-        const res = parseInt(amount) + parseInt(amount) * (e.target.value / 100);
+        const res = parseInt(amount) + parseInt(amount) * ((parseInt(e.target.value) + 3) / 100);
         setTotalAmount(res)
     }
 
@@ -177,6 +177,7 @@ const DonatePage = () => {
 
                             <h5>Select Tip%:</h5>
                             {/* Commission Select */}
+                            <p style={{ margin: "0px 20px", textAlign: "start" }}>BP3F charges NO fees. We rely on donors like you to cover for our expenses. Kindly consider a tip Thank you</p>
                             <select onChange={(e) => { handleCommissionChange(e) }} className="selectOptions">
                                 <option>--Commission--</option>
                                 {options.map((option, index) => {
@@ -187,6 +188,8 @@ const DonatePage = () => {
                                     );
                                 })}
                             </select>
+
+                            <p style={{ margin: "0px 20px" }}>A 3% charge is deducted for Razor pay</p>
 
                             <h5>Total Amount after Tip: &#8377;{totalAmount}</h5>
                             <input type="text" name="name" id="nameIp" placeholder="Name" value={name} onChange={(e) => { setName(e.target.value) }} />

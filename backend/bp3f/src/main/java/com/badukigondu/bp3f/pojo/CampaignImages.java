@@ -1,5 +1,7 @@
 package com.badukigondu.bp3f.pojo;
 
+import java.io.Serializable;
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -23,7 +25,7 @@ import lombok.Data;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "campaign_images")
-public class CampaignImages {
+public class CampaignImages implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 

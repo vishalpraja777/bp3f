@@ -18,8 +18,12 @@
     width: 100%;
     border-radius: 10px;
     object-fit: cover;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.campaignDetailBody p{
+    text-align: justify;
 }
 
 .textDetail {
@@ -70,6 +74,19 @@
     border-radius: 8px;
     cursor: pointer;
     transition: 0.2s;
+}
+
+.fb{
+    background-color: var(--fbColor);
+}
+.wa{
+    background-color: var(--waColor);
+}
+.ig{
+    background-color: var(--igColor);
+}
+.tw{
+    background-color: var(--twColor);
 }
 
 .socialMediaBtn:hover {

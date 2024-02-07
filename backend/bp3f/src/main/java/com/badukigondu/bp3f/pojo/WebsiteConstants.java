@@ -17,8 +17,8 @@ import lombok.Data;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "campaign_category")
-public class CampaignCategory implements Serializable  {
+@Table(name = "website_constants")
+public class WebsiteConstants implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,10 +27,10 @@ public class CampaignCategory implements Serializable  {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "category")
-    private String category;
+    @Column(name = "key_column", unique = true)
+    private String keyColumn;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "value_column")
+    private String valueColumn;
 
 }

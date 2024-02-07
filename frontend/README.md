@@ -32,14 +32,23 @@ Currently, two official plugins are available:
 - Loading Animation
 - Delete campaign
 
+- Onclick Image full view
+
 - Withdraw amount list in view campaign page
 - Long Description -D
 - Admin Add category fom database
 - Razorpay Page 
 
+- AdminPanel
+
 - Database:
-- Category - id, category, status
-- Withdrawal Approval - id, userId, campaignId, approvedDate, amount, approvedStatus
+- Category - id, category, status -D -iP
+- Commission option -D -iP
+- All Constants -D -iP
+- Withdrawal Approval - id, userId, campaignId, approvedDate, amount, approvedStatus -D -iP
+
+- ALTER TABLE your_table MODIFY your_column TEXT;
+- alter table website_constants modify value_column text;
 
 # S3
 - Add the following properties in application.properties file:
