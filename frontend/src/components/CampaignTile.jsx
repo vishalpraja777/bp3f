@@ -16,7 +16,7 @@ const CampaignTile = (props) => {
         <div className="campaignTile" /*onClick={(e) => { handleViewClick(e, props.campaign) }}*/>
             <img src={props.campaign.imageLink} alt="Campaign Image" />
             <h3>{props.campaign.title}</h3>
-            <p>{props.campaign.description.substring(0, 100)}...</p>
+            <p>{props.campaign.description.substring(0, 75)}...</p>
             <p><b>Goal Amount: {props.campaign.goalAmount}</b></p>
             <p><b>Amount Collected: {props.campaign.amountRecieved}</b></p>
             <div className="campaignTileBtnContainer">

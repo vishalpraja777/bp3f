@@ -23,6 +23,10 @@ public interface CampaignDao extends JpaRepository<Campaign, Long> {
 
     @Transactional
     @Modifying
+    void updateAmountWithdrawn(@Param("amount") Long amount, @Param("id") Long id);
+
+    @Transactional
+    @Modifying
     void updateStatus(@Param("status") String status, @Param("id") Long id);
 
     List<CampaignWrapper> getCampaignByUserId(@Param("userId") Long userId);

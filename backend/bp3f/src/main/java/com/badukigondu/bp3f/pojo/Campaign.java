@@ -29,6 +29,8 @@ import lombok.Data;
 
 @NamedQuery(name = "Campaign.updateAmountRecieved", query = "Update Campaign c set c.amountRecieved=:amount where c.id=:id")
 
+@NamedQuery(name = "Campaign.updateAmountWithdrawn", query = "Update Campaign c set c.amountWithdrawn=:amount where c.id=:id")
+
 @NamedQuery(name = "Campaign.updateStatus", query = "Update Campaign c set c.status=:status where c.id=:id")
 
 @NamedQuery(name = "Campaign.updateCampaignImage", query = "Update Campaign c set c.imageLink=:imageLink where c.id=:id")

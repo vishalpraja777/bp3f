@@ -11,6 +11,8 @@ import SmallLoading from "../components/SmallLoading";
 import CampaignImageTile from "../components/CampaignImageTile";
 import WithdrawalRequestTile from "../components/WithdrawalRequestTile";
 import { Toaster, toast } from "sonner";
+import WithdrawalApprovedTile from "../components/WithdrawalApprovedTile";
+import SocialMediaLinks from "../components/SocialMediaLinks";
 
 const viewCampaignByCreater = () => {
 
@@ -22,13 +24,15 @@ const viewCampaignByCreater = () => {
     const [usersDonated, setUsersDonated] = useState(null);
     const [campaignImages, setCampaignImages] = useState(null);
 
+    const [isWithdrawalsRequestLoading, setIsWithdrawalsRequestLoading] = useState(true);
+    const [isWithdrawalsApprovedLoading, setIsWithdrawalsApprovedLoading] = useState(true);
     const [withdrawalsRequest, setWithdrawalsRequest] = useState()
+    const [withdrawalsApproved, setWithdrawalsApproved] = useState()
 
     const [isLoading, setIsLoading] = useState(true);
     const [isUsersDonatedLoading, setIsUsersDonatedLoading] = useState(true);
     const [isCampaignImagesLoading, setIsCampaignImagesLoading] = useState(true);
 
-    const [isWithdrawalsRequestLoading, setIsWithdrawalsRequestLoading] = useState(true);
     const [showWithdrawalPopup, setShowWithdrawalPopup] = useState(false);
 
     const [withdrawAmount, setWithdrawAmount] = useState(0);
@@ -41,6 +45,8 @@ const viewCampaignByCreater = () => {
     const [image, setImage] = useState()
     const [isUploaded, setIsUploaded] = useState(false)
     const [isImageUploadLoading, setIsImageUploadLoading] = useState(false)
+
+    const [enlargeImageUrl, setEnlargeImageUrl] = useState('');
 
     const errorMessage = 'Please select a vaild Image file and Less than 1Mb';
 
@@ -57,7 +63,7 @@ const viewCampaignByCreater = () => {
         e.preventDefault()
         console.log(imageLink);
 
-        if(imageLink == ''){
+        if (imageLink == '') {
             toast.error("Upload Image");
             return;
         }
@@ -73,15 +79,15 @@ const viewCampaignByCreater = () => {
                 Authorization: `Bearer ${localStorage.getItem("jwtToken")}`
             }
         })
-        .then((response) => {
-            console.log(response.data);
-            toast.success("Campaign Image Updated");
-            setShowImageUploadPopup(false);
-        })
-        .catch((error) => {
-            console.log(error.response)
-            toast.error("Campaign Image Was Not Updated")
-        })
+            .then((response) => {
+                console.log(response.data);
+                toast.success("Campaign Image Updated");
+                setShowImageUploadPopup(false);
+            })
+            .catch((error) => {
+                console.log(error.response)
+                toast.error("Campaign Image Was Not Updated")
+            })
 
     }
 
@@ -167,7 +173,7 @@ const viewCampaignByCreater = () => {
             toast.error("Enter the Amount to withdraw")
             return;
         }
-        if (withdrawAmount > campaignData.amountRecieved) {
+        if (parseInt(withdrawAmount) + campaignData.amountWithdrawn > campaignData.amountRecieved) {
             toast.error("Not Enough Balance")
             return;
         }
@@ -274,29 +280,23 @@ const viewCampaignByCreater = () => {
             console.error("Error: ", error.response.data);
         }
 
-    }, []);
+        const withdrawalsApprovedUrl = BASE_API_URL + "withdrawApproval/getByCampaignId/" + campaignId
 
-    const shareOnSocialMedia = (platform) => {
-        const url = window.location.href;
-        let shareLink = "";
-        switch (platform) {
-            case "facebook":
-                shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                break;
-            case "whatsapp":
-                shareLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`;
-                break;
-            case "instagram":
-                shareLink = `https://www.instagram.com/?url=${encodeURIComponent(url)}`;
-                break;
-            case "twitter":
-                shareLink = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
-                break;
-            default:
-                break;
+        try {
+            axios.get(withdrawalsApprovedUrl, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("jwtToken")}`
+                }
+            }).then((response) => {
+                setWithdrawalsApproved(response.data);
+                setIsWithdrawalsApprovedLoading(false);
+                console.log(response.data);
+            })
+        } catch (error) {
+            console.error("Error: ", error.response.data);
         }
-        window.open(shareLink, "_blank");
-    }
+
+    }, []);
 
     return (
         <div>
@@ -318,41 +318,60 @@ const viewCampaignByCreater = () => {
                             </div>
                             <div className="textDetail">
                                 <button className="signupBtn btn" onClick={(e) => handleAddImages(e)}><i className="fa-solid fa-plus"></i> Add Images</button>
-                                <button className="signupBtn withdrawBtn" onClick={(e) => setShowWithdrawalPopup(true)}>Withdraw</button>
+                                <button className="signupBtn withdrawBtn greenBtn" onClick={(e) => setShowWithdrawalPopup(true)}>Withdraw Amount</button>
+
                                 {!isWithdrawalsRequestLoading &&
                                     <div>
-                                        {(withdrawalsRequest.length == 0) ? <div></div> :
+                                        {(withdrawalsRequest.length == 0) ? <div>
+                                            {/* <h3>No Active Requests</h3> */}
+                                        </div> :
                                             <div>
                                                 {
                                                     withdrawalsRequest.map((withdrawalRequest) => (
                                                         <WithdrawalRequestTile key={withdrawalRequest.id} withdrawalRequest={withdrawalRequest} />
                                                     ))
                                                 }
+                                                <div className="divider"></div>
                                             </div>
                                         }
                                     </div>
-
                                 }
+
+                                {!isWithdrawalsApprovedLoading &&
+                                    <div>
+                                        {(withdrawalsApproved.length == 0) ? <div>
+                                            {/* <h3>No Active Requests</h3> */}
+                                        </div> :
+                                            <div>
+                                                {/* <table>
+                                                    <tr>
+                                                        <th>Amount</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </table> */}
+                                                <h3>Amount Withdrawn History:</h3>
+                                                {
+                                                    withdrawalsApproved.map((withdrawalApproved) => (
+                                                        <WithdrawalApprovedTile key={withdrawalApproved.id} withdrawalApproved={withdrawalApproved} />
+                                                    ))
+                                                }
+                                                <div className="divider"></div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
                                 <h1>&#8377;{campaignData.goalAmount} <span className="spanText">Goal</span> </h1>
                                 <h2><span className="spanText">Raised: </span> &#8377;{campaignData.amountRecieved}<span className="spanText"> so far</span></h2>
 
-                                <h2><span className="spanText">Amount Withdrawn: </span> &#8377;{campaignData.amountWithdrawn}<span className="spanText"> so far</span></h2>
+                                <h2><span className="spanText">Total Withdrawn: </span> &#8377;{campaignData.amountWithdrawn}<span className="spanText"></span></h2>
 
 
                                 {/* <h3><span className="spanText">Remaining: </span> &#8377;{amountPending}<span className="spanText"> to reach the goal</span></h3> */}
                                 <h3>{daysRemaining} <span className="spanText"> days left</span></h3>
 
-                                <div className="socialLinks">
-                                    <h3>Share On Social Media</h3>
-                                    <i className="fa-brands fa-facebook-f socialMediaBtn" onClick={() => shareOnSocialMedia("facebook")}></i>
-                                    <i className="fa-brands fa-instagram socialMediaBtn" onClick={() => shareOnSocialMedia("instagram")}></i>
-                                    <i className="fa-brands fa-whatsapp socialMediaBtn" onClick={() => shareOnSocialMedia("whatsapp")}></i>
-                                    <i className="fa-brands fa-twitter socialMediaBtn" onClick={() => shareOnSocialMedia("twitter")}></i>
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("facebook")}>Share on Facebook</button> */}
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("whatsapp")}>Share on WhatsApp</button> */}
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("instagram")}>Share on Instagram</button> */}
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("twitter")}>Share on Twitter</button> */}
-                                </div>
+                                <SocialMediaLinks />
+
                             </div>
                         </div>
                         <div className="bottomSection">
@@ -372,7 +391,9 @@ const viewCampaignByCreater = () => {
                                                 <p>No Images</p> :
                                                 <div className="rowForCampaignImages">
                                                     {campaignImages.map((campaignImage) => (
-                                                        <CampaignImageTile key={campaignImage.id} campaignImage={campaignImage} />
+                                                        <div onClick={() => { setEnlargeImageUrl(campaignImage.imageLink) }}>
+                                                            <CampaignImageTile key={campaignImage.id} campaignImage={campaignImage} />
+                                                        </div>
                                                     ))}
                                                 </div>
                                             }
@@ -424,45 +445,52 @@ const viewCampaignByCreater = () => {
                     )}
                 </div>}
 
-                {
+            {
                 showImageUploadPopup &&
                 <div className="withdrawalPopup">
                     <i className="fa-solid fa-x" onClick={() => setShowImageUploadPopup(false)}></i>
                     <form onSubmit={(e) => handleUpdateCampaignImage(e)}>
                         <label htmlFor="withdrawAmount">Upload Image:</label>
-                        
+
                         <div className="fileContainer" onDrop={(e) => { handleFileSubmit(e, e.dataTransfer.files[0]) }}>
 
-                                {isImageUploadLoading &&
-                                    <div className="loadingContainer">
-                                        <SmallLoading />
-                                    </div>
-                                }
+                            {isImageUploadLoading &&
+                                <div className="loadingContainer">
+                                    <SmallLoading />
+                                </div>
+                            }
 
-                                {!isImageUploadLoading && <div>
-                                    {!image && <div><p>Choose Image or Drag and Drop Here</p>
-                                        <input type="file" name="image" id="imageIp" onChange={(e) => { handleFileSubmit(e, e.target.files[0]) }} />
-                                    </div>
-                                    }
-                                    {image && !isUploaded &&
-                                        <p>Image Name: {image.name}
-                                            <br />
-                                            <button className="greenBtn btn" onClick={(e) => { uploadImage(e) }}>Upload image</button>
-                                            <button className="redBtn btn" onClick={(e) => { setImage('') }}>Remove image</button>
-                                        </p>
-                                    }
-                                    {image && isUploaded &&
-                                        <div>
-                                            <p>Image Uploaded: {image.name}</p>
-                                            <button className="redBtn btn" onClick={(e) => { handleUploadAnotherImage(e) }}>Upload different image</button>
-                                        </div>
-                                    }
+                            {!isImageUploadLoading && <div>
+                                {!image && <div><p>Choose Image or Drag and Drop Here</p>
+                                    <input type="file" name="image" id="imageIp" onChange={(e) => { handleFileSubmit(e, e.target.files[0]) }} />
                                 </div>
                                 }
+                                {image && !isUploaded &&
+                                    <p>Image Name: {image.name}
+                                        <br />
+                                        <button className="greenBtn btn" onClick={(e) => { uploadImage(e) }}>Upload image</button>
+                                        <button className="redBtn btn" onClick={(e) => { setImage('') }}>Remove image</button>
+                                    </p>
+                                }
+                                {image && isUploaded &&
+                                    <div>
+                                        <p>Image Uploaded: {image.name}</p>
+                                        <button className="redBtn btn" onClick={(e) => { handleUploadAnotherImage(e) }}>Upload different image</button>
+                                    </div>
+                                }
                             </div>
+                            }
+                        </div>
 
                         <button type="submit" className="signupBtn btn">Update Campaign Image</button>
                     </form>
+                </div>
+            }
+
+            {enlargeImageUrl &&
+                <div className="enlargeImage">
+                    <i className="fa-solid fa-x" onClick={() => { setEnlargeImageUrl('') }}></i>
+                    <img src={enlargeImageUrl} alt="Image" />
                 </div>
             }
 

@@ -9,6 +9,7 @@ import { BASE_API_URL } from "../constants/Constants";
 import SmallLoading from '../components/SmallLoading'
 import UsersDonatedTile from "../components/UsersDonatedTile";
 import CampaignImageTile from "../components/CampaignImageTile";
+import SocialMediaLinks from "../components/SocialMediaLinks";
 
 const CampaignDetail = () => {
 
@@ -112,28 +113,6 @@ const CampaignDetail = () => {
         navigate(`/donatePage/${campaignData.id}`)
     }
 
-    const shareOnSocialMedia = (platform) => {
-        const url = window.location.href;
-        let shareLink = "";
-        switch (platform) {
-            case "facebook":
-                shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                break;
-            case "whatsapp":
-                shareLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`;
-                break;
-            case "instagram":
-                shareLink = `https://www.instagram.com/?url=${encodeURIComponent(url)}`;
-                break;
-            case "twitter":
-                shareLink = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
-                break;
-            default:
-                break;
-        }
-        window.open(shareLink, "_blank");
-    }
-
     return (
         <div>
             {isLoading && <Loading />}
@@ -156,17 +135,8 @@ const CampaignDetail = () => {
                                 {/* <h3><span className="spanText">Remaining: </span> &#8377;{amountPending}<span className="spanText"> to reach the goal</span></h3> */}
                                 <h3>{daysRemaining} <span className="spanText"> days left</span></h3>
 
-                                <div className="socialLinks">
-                                    <h3>Share On Social Media</h3>
-                                    <i className="fa-brands fa-facebook-f socialMediaBtn fb" onClick={() => shareOnSocialMedia("facebook")}></i>
-                                    <i className="fa-brands fa-instagram socialMediaBtn ig" onClick={() => shareOnSocialMedia("instagram")}></i>
-                                    <i className="fa-brands fa-whatsapp socialMediaBtn wa" onClick={() => shareOnSocialMedia("whatsapp")}></i>
-                                    <i className="fa-brands fa-twitter socialMediaBtn tw" onClick={() => shareOnSocialMedia("twitter")}></i>
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("facebook")}>Share on Facebook</button> */}
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("whatsapp")}>Share on WhatsApp</button> */}
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("instagram")}>Share on Instagram</button> */}
-                                    {/* <button className="signupBtn btn" onClick={() => shareOnSocialMedia("twitter")}>Share on Twitter</button> */}
-                                </div>
+                                <SocialMediaLinks />
+                                
                             </div>
                         </div>
                         <div className="bottomSection">

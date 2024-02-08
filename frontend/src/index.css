@@ -12,11 +12,13 @@
 
     --fbColor: #316FF6;
     --waColor: #25d366;
-    --igColor: #d62976;
+    /* --igColor: #d62976; */
+    --igColor: #fd107b;
     --twColor: #1DA1F2;
 
     --btnColor1: var(--orange);
     --btnColor2: var(--orange);
+    --greenBtnColor: var(--waColor);
     /* --navbarColor: var(--yellowPrimary); */
     --navbarColor: #00000014;
     /* --navbarColor: #FFFDF0; */

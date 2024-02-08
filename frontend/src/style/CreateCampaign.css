@@ -40,7 +40,7 @@
 }
 
 .greenBtn{
-    background-color: var(--btnColor2);
+    background-color: var(--greenBtnColor);
     color: var(--btnInClr);
     margin: 5px 0px;
 }

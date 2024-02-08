@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.badukigondu.bp3f.constants.Bp3fConstants;
+import com.badukigondu.bp3f.dao.CampaignDao;
 import com.badukigondu.bp3f.dao.WithdrawalApprovalDao;
 import com.badukigondu.bp3f.dao.WithdrawalRequestDao;
 import com.badukigondu.bp3f.jwt.JwtUtil;
@@ -32,6 +33,9 @@ public class WithdrawalApprovalServiceImpl implements WithdrawalApprovalService 
 
     @Autowired
     WithdrawalRequestDao withdrawalRequestDao;
+
+    @Autowired
+    CampaignDao campaignDao;
 
     @Autowired
     JwtUtil jwtUtil;
@@ -80,6 +84,10 @@ public class WithdrawalApprovalServiceImpl implements WithdrawalApprovalService 
         withdrawalApproval.setCampaign(withdrawalRequest.getCampaign());
 
         withdrawalApproval.setUser(withdrawalRequest.getUser());
+
+        Long amountWithdrawn = campaignDao.findById(withdrawalRequest.getCampaign().getId()).get().getAmountWithdrawn() + withdrawalRequest.getWithdrawAmount();
+
+        campaignDao.updateAmountWithdrawn(amountWithdrawn,withdrawalRequest.getCampaign().getId());
 
         return withdrawalApproval;
 
