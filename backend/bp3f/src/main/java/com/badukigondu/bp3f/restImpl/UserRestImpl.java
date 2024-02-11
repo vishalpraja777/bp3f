@@ -87,4 +87,14 @@ public class UserRestImpl implements UserRest {
         return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    public ResponseEntity<String> updateStatus(Long id, Map<String, String> requestMap) {
+        try {
+            return userService.updateStatus(id, requestMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,7 +89,6 @@ public class CampaignServiceImpl implements CampaignService {
         } else {
             String defaultImageUrl = "https://s3.ap-south-1.amazonaws.com/bp3f-bucket/CampaignImages/donation-image.png";
             campaign.setImageLink(defaultImageUrl);
-
         }
 
         return campaign;

@@ -20,5 +20,7 @@ public interface UserService {
     ResponseEntity<String> updateInfo(Long id, Map<String, String> requestMap);
 
     ResponseEntity<String> updateProfilePic(Long id, Map<String, String> requestMap);
+
+    ResponseEntity<String> updateStatus(Long id, Map<String, String> requestMap);
     
 }

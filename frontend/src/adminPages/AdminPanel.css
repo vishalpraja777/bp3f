@@ -1,0 +1,65 @@
+.adminNavbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+.sidePanel {
+    /* width: 200px; */
+    background-color: var(--twColor);
+    padding: 16px;
+}
+
+.sidePanelButton {
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 4px 20px;
+    border: none;
+    background-color: var(--twColor);
+    color: #ffffff;
+    transition: 0.1s;
+    font-size: 1em;
+}
+
+.sidePanelButton i {
+    padding: 8px;
+}
+
+.sidePanelButton:focus {
+    color: white;
+    transform: scale(1.1);
+}
+
+.sidePanelButton:hover {
+    transform: scale(1.05);
+}
+
+.mainContent {
+    flex: 1;
+    padding: 20px;
+}
+
+.adminPanel {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.adminPanelContent {
+    display: flex;
+    flex: 1;
+}
+
+/* Users List */
+
+.usersList {
+    width: 800px;
+    margin: 10px auto;
+}
+
+.tileLeft .profilePic {
+    border-radius: 50px;
+    max-width: 50px;
+    aspect-ratio: 1/1;
+}

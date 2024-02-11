@@ -89,7 +89,16 @@ public class UserServiceImpl implements UserService {
 		user.setAadharCard(requestMap.get("aadharCard"));
 		user.setPanCard(requestMap.get("panCard"));
 		user.setGender(requestMap.get("gender"));
-		user.setProfilePic(requestMap.get("profilePic"));
+
+		// user.setProfilePic(requestMap.get("profilePic"));
+
+		if (!requestMap.get("profilePic").equalsIgnoreCase("")) {
+			user.setProfilePic(requestMap.get("profilePic"));
+		} else {
+			String defaultImageUrl = "https://bp3f-bucket.s3.ap-south-1.amazonaws.com/CampaignImages/profilePic.png";
+			user.setProfilePic(defaultImageUrl);
+		}
+
 		user.setPassword(passwordEncoder.encode(requestMap.get("password")));
 		// user.setStatus("false");
 		user.setRole("user");
@@ -211,7 +220,7 @@ public class UserServiceImpl implements UserService {
 						HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
-			if(requestMap.containsKey("imageLink")){
+			if (requestMap.containsKey("imageLink")) {
 				userDao.updateProfilePic(id, requestMap.get("imageLink"));
 				return Bp3fUtils.getResponseEntity("Profile Pic Updated", HttpStatus.OK);
 			}
@@ -219,6 +228,31 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@Override
+	public ResponseEntity<String> updateStatus(Long id, Map<String, String> requestMap) {
+        try {
+
+			if(jwtUtil.isAdmin()){
+				
+				User user = userDao.findById(id).get();
+
+				if(Boolean.parseBoolean(requestMap.get("status")) == true){
+					user.setStatus(Bp3fConstants.ACTIVE);
+				} else if(Boolean.parseBoolean(requestMap.get("status")) == false){
+					user.setStatus(Bp3fConstants.DEACTIVE);
+				}
+				userDao.save(user);
+				return Bp3fUtils.getResponseEntity("Status Changed Successfully", HttpStatus.OK);
+			} else{
+				return Bp3fUtils.getResponseEntity(Bp3fConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+			}
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

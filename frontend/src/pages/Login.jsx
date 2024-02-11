@@ -39,17 +39,20 @@ const Login = () => {
                 }).then((response) => {
                     localStorage.setItem("userId", response.data.id)
                     localStorage.setItem("profilePic", response.data.profilePic)
+                    if (response.data.role == 'admin') {
+                        navigate("/adminHomePage", { replace: true })
+                    } else {
+                        navigate("/", { replace: true });
+                    }
                 })
                     .catch((error) => {
                         // handle errors
                         console.log(error);
                     });
 
-                navigate("/", { replace: true });
-
             } catch (error) {
                 console.error("Login failed:", error.response.data);
-                toast.error('Login Failed')
+                toast.error('Login Failed: '+ error.response.data.message)
 
             }
         }

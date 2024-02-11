@@ -25,7 +25,7 @@ const ProfilePage = () => {
 
     const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/*"];
 
-    CheckTokenValidity();
+    // CheckTokenValidity();
 
     const [imageUrl, setImageUrl] = useState('');
 

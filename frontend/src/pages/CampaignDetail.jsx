@@ -29,6 +29,8 @@ const CampaignDetail = () => {
     const [isUsersDonatedLoading, setIsUsersDonatedLoading] = useState(true);
     const [isCampaignImagesLoading, setIsCampaignImagesLoading] = useState(true);
 
+    const [enlargeImageUrl, setEnlargeImageUrl] = useState('');
+
 
     const currentDate = new Date();
 
@@ -136,7 +138,7 @@ const CampaignDetail = () => {
                                 <h3>{daysRemaining} <span className="spanText"> days left</span></h3>
 
                                 <SocialMediaLinks />
-                                
+
                             </div>
                         </div>
                         <div className="bottomSection">
@@ -156,7 +158,9 @@ const CampaignDetail = () => {
                                                 <p>No Images</p> :
                                                 <div className="rowForCampaignImages">
                                                     {campaignImages.map((campaignImage) => (
-                                                        <CampaignImageTile key={campaignImage.id} campaignImage={campaignImage} />
+                                                        <div onClick={() => { setEnlargeImageUrl(campaignImage.imageLink) }}>
+                                                            <CampaignImageTile key={campaignImage.id} campaignImage={campaignImage} />
+                                                        </div>
                                                     ))}
                                                 </div>
                                             }
@@ -193,6 +197,14 @@ const CampaignDetail = () => {
                         <Footer />
                     </div>
                 </div>}
+
+            {enlargeImageUrl &&
+                <div className="enlargeImage">
+                    <i className="fa-solid fa-x" onClick={() => { setEnlargeImageUrl('') }}></i>
+                    <img src={enlargeImageUrl} alt="Image" />
+                </div>
+            }
+
         </div>
     );
 }

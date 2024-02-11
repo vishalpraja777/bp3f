@@ -31,12 +31,13 @@ Currently, two official plugins are available:
 - Callback for payment
 - Loading Animation
 - Delete campaign
+- Progress bar -D
 
-- Onclick Image full view
+- Onclick Image full view -D
 
-- Withdraw amount list in view campaign page
+- Withdraw amount list in view campaign page -D
 - Long Description -D
-- Admin Add category fom database
+- Admin Add category fom database -D
 - Razorpay Page 
 
 - AdminPanel
