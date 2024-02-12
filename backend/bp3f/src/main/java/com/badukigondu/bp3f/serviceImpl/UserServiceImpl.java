@@ -255,4 +255,19 @@ public class UserServiceImpl implements UserService {
         return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	@Override
+	public ResponseEntity<UserWrapper> findById(Long id) {
+		try {
+
+			User user = userDao.findById(id).get();
+
+			UserWrapper userWrapper = new UserWrapper(user.getId(), user.getName(), user.getGender(), user.getMobileNumber(), user.getProfilePic(), user.getEmail(), user.getPanCard(), user.getAadharCard(), user.getRole(), user.getStatus(), user.getBankName(), user.getHolderName(), user.getAccountNumber(), user.getIfscCode());
+
+			return new ResponseEntity<>(userWrapper, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(new UserWrapper(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
 }

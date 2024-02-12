@@ -22,7 +22,7 @@ public interface CategoryOptionsRest {
     @GetMapping(path = "/getAll")
     public ResponseEntity<List<CategoryOptions>> getAllCampaignCategory();
     
-    @DeleteMapping(path = "/delete/{id}")
+    @PostMapping(path = "/delete/{id}")
     public ResponseEntity<String> deleteCampaignCategory(@PathVariable Long id);
     
 }

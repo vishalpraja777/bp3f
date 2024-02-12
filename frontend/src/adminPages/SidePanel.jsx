@@ -15,10 +15,11 @@ const SidePanel = ({ onButtonClick }) => {
      */}
       <button className="sidePanelButton" onClick={() => navigate("/usersControl")}><i className="fa-solid fa-user"></i> Users</button>
       <button className="sidePanelButton" onClick={() => navigate("/campaignControl")}><i className="fa-solid fa-list"></i> Campaign</button>
+      <button className="sidePanelButton" onClick={() => navigate("/approveWithdrawals")}><i className="fa-solid fa-money-bill-transfer"></i> Withdrawals</button>
       <button className="sidePanelButton" onClick={() => navigate("/optionsControl")}><i className="fa-solid fa-table"></i> Select Options</button>
       <button className="sidePanelButton" onClick={() => navigate("/privacyControl")}><i className="fa-solid fa-shield-halved"></i> Privacy Policy</button>
     
-      <button className="sidePanelButton" onClick={() => navigate("/logout")}><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      <button className="sidePanelButton" onClick={() => navigate("/logout")}><i className="fa-solid fa-right-from-bracket"></i> Logout</button>
     
     </div>
   );

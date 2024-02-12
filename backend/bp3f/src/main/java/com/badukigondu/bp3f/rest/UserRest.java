@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.badukigondu.bp3f.pojo.User;
 import com.badukigondu.bp3f.wrapper.UserWrapper;
 
 @RequestMapping(path = "/user")
@@ -32,6 +33,9 @@ public interface UserRest {
 
     @GetMapping(path = "/get/{email}")
     public ResponseEntity<UserWrapper> getUserByEmail(@PathVariable(name = "email") String email);
+
+    @GetMapping(path = "/findById/{id}")
+    public ResponseEntity<UserWrapper> findById(@PathVariable(name = "id") Long id);
 
     @PostMapping(path = "/updateProfilePic/{id}")
     public ResponseEntity<String> updateProfilePic(@PathVariable(name = "id") Long id,@RequestBody(required = true) Map<String, String> requestMap);

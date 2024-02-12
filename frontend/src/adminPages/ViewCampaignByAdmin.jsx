@@ -1,26 +1,23 @@
-import { useNavigate, useParams } from "react-router-dom";
-import CheckTokenValidity from "../services/CheckTokenValidity";
-import UsersDonatedTile from "../components/UsersDonatedTile";
-import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
-import Loading from "../components/Loading";
-import Navbar from "../components/Navbar";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BASE_API_URL } from "../constants/Constants";
 import axios from "axios";
-import SmallLoading from "../components/SmallLoading";
-import CampaignImageTile from "../components/CampaignImageTile";
-import WithdrawalRequestTile from "../components/WithdrawalRequestTile";
+import Loading from "../components/Loading";
 import { Toaster, toast } from "sonner";
-import WithdrawalApprovedTile from "../components/WithdrawalApprovedTile";
 import SocialMediaLinks from "../components/SocialMediaLinks";
+import SmallLoading from "../components/SmallLoading";
+import UsersDonatedTile from "../components/UsersDonatedTile";
+import Footer from "../components/Footer";
+import WithdrawalApprovedTile from "../components/WithdrawalApprovedTile";
+import WithdrawalRequestTile from "../components/WithdrawalRequestTile";
+import CampaignImageTile from "../components/CampaignImageTile";
+import AdminNavbar from "./AdminNavbar";
 
-const viewCampaignByCreater = () => {
+const viewCampaignByAdmin = () => {
 
     const { campaignId } = useParams();
 
     const navigate = useNavigate();
-
-    CheckTokenValidity();
 
     const [campaignData, setCampaignData] = useState(null);
     const [usersDonated, setUsersDonated] = useState(null);
@@ -234,7 +231,7 @@ const viewCampaignByCreater = () => {
 
             });
         } catch (error) {
-            console.error("Error: ", error.response.data);
+            console.error("Error: ", error.response);
 
         }
 
@@ -247,7 +244,7 @@ const viewCampaignByCreater = () => {
                 console.log(response.data);
             });
         } catch (error) {
-            console.error("Error: ", error.response.data);
+            console.error("Error: ", error.response);
         }
 
         const campaignImagesUrl = BASE_API_URL + "campaignImages/getImageByCampaignId/" + campaignId;
@@ -258,7 +255,7 @@ const viewCampaignByCreater = () => {
                 setIsCampaignImagesLoading(false);
             });
         } catch (error) {
-            console.error("Error: ", error.response.data);
+            console.error("Error: ", error.response);
         }
 
         const withdrawalsRequestUrl = BASE_API_URL + "withdraw/getByCampaignId/" + campaignId;
@@ -277,7 +274,7 @@ const viewCampaignByCreater = () => {
                 // }
             });
         } catch (error) {
-            console.error("Error: ", error.response.data);
+            console.error("Error: ", error.response);
         }
 
         const withdrawalsApprovedUrl = BASE_API_URL + "withdrawApproval/getByCampaignId/" + campaignId
@@ -293,7 +290,7 @@ const viewCampaignByCreater = () => {
                 console.log(response.data);
             })
         } catch (error) {
-            console.error("Error: ", error.response.data);
+            console.error("Error: ", error.response);
         }
 
     }, []);
@@ -302,148 +299,154 @@ const viewCampaignByCreater = () => {
         <div>
             {isLoading && <Loading />}
             {!isLoading &&
-                <div className="campaignDetail">
-                    <Toaster richColors />
-                    <Navbar />
-                    <div className="campaignContainer">
-                        <h1>{campaignData.title}</h1>
-                        <div className="campaignDetailBody">
-                            <div className="leftContainer">
-                                <img src={campaignData.imageLink} alt="Campaign Image" />
-                                <i className="fa-solid fa-edit" onClick={(e) => { setShowImageUploadPopup(true) }}> Change Image</i>
-
-                                <p><b>Category: {campaignData.category}</b></p>
-                                <p><b>Description:</b></p>
-                                <p>{campaignData.description}</p>
+                <div className="profilePage">
+                    <AdminNavbar />
+                    <div className="campaignDetail">
+                        <Toaster richColors />
+                        <div className="campaignContainer">
+                            <div className="backButton">
+                                <Link to={-1} replace={true} ><i className="fa-solid fa-arrow-left"></i></Link>
+                                <h1>{campaignData.title}</h1>
                             </div>
-                            <div className="textDetail">
-                                <button className="signupBtn btn" onClick={(e) => handleAddImages(e)}><i className="fa-solid fa-plus"></i> Add Images</button>
-                                <button className="signupBtn withdrawBtn greenBtn" onClick={(e) => setShowWithdrawalPopup(true)}>Withdraw Amount</button>
+                            <div className="campaignDetailBody">
+                                <div className="leftContainer">
+                                    <img src={campaignData.imageLink} alt="Campaign Image" />
+                                    <i className="fa-solid fa-edit" onClick={(e) => { setShowImageUploadPopup(true) }}> Change Image</i>
 
-                                {!isWithdrawalsRequestLoading &&
-                                    <div>
-                                        {(withdrawalsRequest.length == 0) ? <div>
-                                            {/* <h3>No Active Requests</h3> */}
-                                        </div> :
-                                            <div>
-                                                {
-                                                    withdrawalsRequest.map((withdrawalRequest) => (
-                                                        <WithdrawalRequestTile key={withdrawalRequest.id} withdrawalRequest={withdrawalRequest} />
-                                                    ))
-                                                }
-                                                <div className="divider"></div>
-                                            </div>
-                                        }
-                                    </div>
-                                }
+                                    <p><b>Category: {campaignData.category}</b></p>
+                                    <p><b>Description:</b></p>
+                                    <p>{campaignData.description}</p>
+                                </div>
+                                <div className="textDetail">
+                                    <button className="signupBtn btn" onClick={(e) => handleAddImages(e)}><i className="fa-solid fa-plus"></i> Add Images</button>
+                                    <button className="signupBtn withdrawBtn greenBtn" onClick={(e) => navigate("/viewUserByAdmin/" + campaignData.userId)}>View User</button>
 
-                                {!isWithdrawalsApprovedLoading &&
-                                    <div>
-                                        {(withdrawalsApproved.length == 0) ? <div>
-                                            {/* <h3>No Active Requests</h3> */}
-                                        </div> :
-                                            <div>
-                                                {/* <table>
+                                    {!isWithdrawalsRequestLoading &&
+                                        <div>
+                                            {(withdrawalsRequest.length == 0) ? <div>
+                                                {/* <h3>No Active Requests</h3> */}
+                                            </div> :
+                                                <div>
+                                                    {
+                                                        withdrawalsRequest.map((withdrawalRequest) => (
+                                                            <WithdrawalRequestTile key={withdrawalRequest.id} withdrawalRequest={withdrawalRequest} />
+                                                        ))
+                                                    }
+                                                    <div className="divider"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+
+                                    {!isWithdrawalsApprovedLoading &&
+                                        <div>
+                                            {(withdrawalsApproved.length == 0) ? <div>
+                                                {/* <h3>No Active Requests</h3> */}
+                                            </div> :
+                                                <div>
+                                                    {/* <table>
                                                     <tr>
                                                         <th>Amount</th>
                                                         <th>Date</th>
                                                     </tr>
                                                 </table> */}
-                                                <h3>Amount Withdrawn History:</h3>
-                                                {
-                                                    withdrawalsApproved.map((withdrawalApproved) => (
-                                                        <WithdrawalApprovedTile key={withdrawalApproved.id} withdrawalApproved={withdrawalApproved} />
-                                                    ))
+                                                    <h3>Amount Withdrawn History:</h3>
+                                                    {
+                                                        withdrawalsApproved.map((withdrawalApproved) => (
+                                                            <WithdrawalApprovedTile key={withdrawalApproved.id} withdrawalApproved={withdrawalApproved} />
+                                                        ))
+                                                    }
+                                                    <div className="divider"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+
+                                    <h1>&#8377;{campaignData.goalAmount} <span className="spanText">Goal</span> </h1>
+                                    <h2><span className="spanText">Raised: </span> &#8377;{campaignData.amountRecieved}<span className="spanText"> so far</span></h2>
+
+                                    <h2><span className="spanText">Total Withdrawn: </span> &#8377;{campaignData.amountWithdrawn}<span className="spanText"></span></h2>
+
+
+                                    {/* <h3><span className="spanText">Remaining: </span> &#8377;{amountPending}<span className="spanText"> to reach the goal</span></h3> */}
+                                    <h3>{daysRemaining} <span className="spanText"> days left</span></h3>
+
+                                    <SocialMediaLinks />
+
+                                </div>
+                            </div>
+                            <div className="bottomSection">
+                                <div className="campaignimages">
+                                    <h3>Campaign Images</h3>
+                                    <div>
+                                        {
+                                            isCampaignImagesLoading &&
+                                            <div>
+                                                <SmallLoading />
+                                            </div>
+                                        }
+                                        {
+                                            !isCampaignImagesLoading &&
+                                            <div>
+                                                {(campaignImages.length == 0) ?
+                                                    <p>No Images</p> :
+                                                    <div className="rowForCampaignImages">
+                                                        {campaignImages.map((campaignImage) => (
+                                                            <div onClick={() => { setEnlargeImageUrl(campaignImage.imageLink) }}>
+                                                                <CampaignImageTile key={campaignImage.id} campaignImage={campaignImage} />
+                                                            </div>
+                                                        ))}
+                                                    </div>
                                                 }
-                                                <div className="divider"></div>
                                             </div>
                                         }
                                     </div>
-                                }
-
-                                <h1>&#8377;{campaignData.goalAmount} <span className="spanText">Goal</span> </h1>
-                                <h2><span className="spanText">Raised: </span> &#8377;{campaignData.amountRecieved}<span className="spanText"> so far</span></h2>
-
-                                <h2><span className="spanText">Total Withdrawn: </span> &#8377;{campaignData.amountWithdrawn}<span className="spanText"></span></h2>
-
-
-                                {/* <h3><span className="spanText">Remaining: </span> &#8377;{amountPending}<span className="spanText"> to reach the goal</span></h3> */}
-                                <h3>{daysRemaining} <span className="spanText"> days left</span></h3>
-
-                                <SocialMediaLinks />
-
-                            </div>
-                        </div>
-                        <div className="bottomSection">
-                            <div className="campaignimages">
-                                <h3>Campaign Images</h3>
-                                <div>
-                                    {
-                                        isCampaignImagesLoading &&
-                                        <div>
-                                            <SmallLoading />
-                                        </div>
-                                    }
-                                    {
-                                        !isCampaignImagesLoading &&
-                                        <div>
-                                            {(campaignImages.length == 0) ?
-                                                <p>No Images</p> :
-                                                <div className="rowForCampaignImages">
-                                                    {campaignImages.map((campaignImage) => (
-                                                        <div onClick={() => { setEnlargeImageUrl(campaignImage.imageLink) }}>
-                                                            <CampaignImageTile key={campaignImage.id} campaignImage={campaignImage} />
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            }
-                                        </div>
-                                    }
+                                </div>
+                                <div className="usersDonatedList">
+                                    <h3>Users Donated</h3>
+                                    <div>
+                                        {
+                                            isUsersDonatedLoading &&
+                                            <div>
+                                                <SmallLoading />
+                                            </div>
+                                        }
+                                        {
+                                            !isUsersDonatedLoading &&
+                                            <div>
+                                                {(usersDonated.length == 0) ?
+                                                    <p>No Users Donated Yet</p> :
+                                                    <div>
+                                                        {usersDonated.map((userDonated) => (
+                                                            <UsersDonatedTile key={userDonated.id} userDonated={userDonated} />
+                                                        ))}
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                            <div className="usersDonatedList">
-                                <h3>Users Donated</h3>
-                                <div>
-                                    {
-                                        isUsersDonatedLoading &&
-                                        <div>
-                                            <SmallLoading />
-                                        </div>
-                                    }
-                                    {
-                                        !isUsersDonatedLoading &&
-                                        <div>
-                                            {(usersDonated.length == 0) ?
-                                                <p>No Users Donated Yet</p> :
-                                                <div>
-                                                    {usersDonated.map((userDonated) => (
-                                                        <UsersDonatedTile key={userDonated.id} userDonated={userDonated} />
-                                                    ))}
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                </div>
-                            </div>
+                            <Footer />
                         </div>
-                        <Footer />
+                        {showWithdrawalPopup && (
+                            <div className="withdrawalPopup">
+                                <i className="fa-solid fa-x" onClick={() => setShowWithdrawalPopup(false)}></i>
+                                <form onSubmit={(e) => handleWithdrawRequest(e)}>
+                                    <label htmlFor="withdrawAmount">Enter Withdrawal Amount:</label>
+                                    <input
+                                        type="number"
+                                        id="withdrawAmount"
+                                        value={withdrawAmount}
+                                        onChange={(e) => setWithdrawAmount(e.target.value)}
+                                    />
+                                    <button type="submit" className="signupBtn btn">Submit</button>
+                                </form>
+                            </div>
+                        )}
                     </div>
-                    {showWithdrawalPopup && (
-                        <div className="withdrawalPopup">
-                            <i className="fa-solid fa-x" onClick={() => setShowWithdrawalPopup(false)}></i>
-                            <form onSubmit={(e) => handleWithdrawRequest(e)}>
-                                <label htmlFor="withdrawAmount">Enter Withdrawal Amount:</label>
-                                <input
-                                    type="number"
-                                    id="withdrawAmount"
-                                    value={withdrawAmount}
-                                    onChange={(e) => setWithdrawAmount(e.target.value)}
-                                />
-                                <button type="submit" className="signupBtn btn">Submit</button>
-                            </form>
-                        </div>
-                    )}
-                </div>}
+                </div>
+            }
 
             {
                 showImageUploadPopup &&
@@ -498,4 +501,4 @@ const viewCampaignByCreater = () => {
     );
 }
 
-export default viewCampaignByCreater;
+export default viewCampaignByAdmin;

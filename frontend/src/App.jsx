@@ -25,6 +25,9 @@ import UsersControl from './adminPages/UsersControl';
 import CampaignControl from './adminPages/CampaignControl';
 import OptionsControl from './adminPages/OptionsControl';
 import UpdatePrivacyPolicy from './adminPages/UpdatePrivacyPolicy';
+import ViewUserByAdmin from './adminPages/ViewUserByAdmin';
+import ViewCampaignByAdmin from './adminPages/ViewCampaignByAdmin';
+import ApproveWithdrawals from './adminPages/ApproveWithdrawals';
 
 function App() {
 
@@ -36,8 +39,11 @@ function App() {
           <Route path="/adminHomePage" element={<AdminHomepage />} />
           <Route path="/usersControl" element={<UsersControl />} />
           <Route path="/campaignControl" element={<CampaignControl />} />
+          <Route path="/approveWithdrawals" element={<ApproveWithdrawals />} />
           <Route path="/optionsControl" element={<OptionsControl />} />
           <Route path="/privacyControl" element={<UpdatePrivacyPolicy />} />
+          <Route path="/viewUserByAdmin/:userId" element={<ViewUserByAdmin />} />
+          <Route path="/viewCampaignByAdmin/:campaignId" element={<ViewCampaignByAdmin />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

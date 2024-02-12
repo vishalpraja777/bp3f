@@ -11,7 +11,7 @@ const EditCampaign = () => {
 
     const { campaignId } = useParams();
 
-    CheckTokenValidity();
+    // CheckTokenValidity();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -183,7 +183,7 @@ const EditCampaign = () => {
                 <div className="signupContainer">
                     <Toaster richColors />
                     <div className="signUp">
-                        <Link to="/myCampaigns" replace={true} ><i className="fa-solid fa-x"></i></Link>
+                        <Link to={-1} replace={true} ><i className="fa-solid fa-x"></i></Link>
                         <div className="createCampaignHead">
                             <h2>Create Campaign</h2>
                         </div>
@@ -191,7 +191,7 @@ const EditCampaign = () => {
                             <form action="">
                                 <input type="text" name="title" id="titleIp" placeholder="Title" value={title} onChange={(e) => { setTitle(e.target.value) }} />
                                 <input type="text" name="category" id="categoryIp" placeholder="Category" value={category} onChange={(e) => { setCategory(e.target.value) }} />
-                                <textarea name="description" id="descriptionIp" rows="4" placeholder="Enter the description"
+                                <textarea name="description" id="descriptionIp" rows="6" placeholder="Enter the description"
                                     value={description} onChange={(e) => { setDescription(e.target.value) }} >
 
                                 </textarea>

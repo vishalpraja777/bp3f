@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../constants/Constants";
-import { TailSpin } from "react-loader-spinner";
 import { Toaster, toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import SmallLoading from "../components/SmallLoading";
@@ -12,6 +11,8 @@ const MyCampaignTile = (props) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    console.log(props.admin)
 
     useEffect(() => {
         if (props.campaign.status == "ACTIVE") {
@@ -108,7 +109,13 @@ const MyCampaignTile = (props) => {
                             </label>
                         </div>
                         <button className="signupBtn btn" onClick={(e) => { navigate("/editCampaign/" + props.campaign.id) }}>Edit</button>
-                        <button className="signupBtn btn" onClick={(e) => { navigate("/viewCampaignByCreater/" + props.campaign.id) }}>View</button>
+
+                        {props.admin &&
+                            <button className="signupBtn btn" onClick={(e) => { navigate("/viewCampaignByAdmin/" + props.campaign.id) }}>View</button>
+                        }
+                        {!props.admin &&
+                            <button className="signupBtn btn" onClick={(e) => { navigate("/viewCampaignByCreater/" + props.campaign.id) }}>View</button>
+                        }
                         {/* <button className="signupBtn btn" onClick={(e) => { handleDeleteCampaign(e) }}>Delete</button> */}
                     </div>
                 }

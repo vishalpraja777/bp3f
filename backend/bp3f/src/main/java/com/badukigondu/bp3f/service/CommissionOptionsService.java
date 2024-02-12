@@ -9,10 +9,10 @@ import com.badukigondu.bp3f.pojo.CommissionOptions;
 
 public interface CommissionOptionsService {
 
-    ResponseEntity<String> addCampaignCategory(Map<String, String> requestMap);
+    ResponseEntity<String> addCommission(Map<String, String> requestMap);
 
-    ResponseEntity<List<CommissionOptions>> getAllCampaignCategory();
+    ResponseEntity<List<CommissionOptions>> getAllCommission();
 
-    ResponseEntity<String> deleteCampaignCategory(Long id);
+    ResponseEntity<String> deleteCommission(Long id);
     
 }

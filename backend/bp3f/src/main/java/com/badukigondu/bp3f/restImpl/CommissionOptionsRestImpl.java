@@ -24,7 +24,7 @@ public class CommissionOptionsRestImpl implements CommissionOptionsRest {
     @Override
     public ResponseEntity<String> addCommission(Map<String, String> requestMap) {
         try {
-            return commissionOptionsService.addCampaignCategory(requestMap);
+            return commissionOptionsService.addCommission(requestMap);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,7 +34,7 @@ public class CommissionOptionsRestImpl implements CommissionOptionsRest {
     @Override
     public ResponseEntity<List<CommissionOptions>> getAllCommission() {
         try {
-            return commissionOptionsService.getAllCampaignCategory();
+            return commissionOptionsService.getAllCommission();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +44,7 @@ public class CommissionOptionsRestImpl implements CommissionOptionsRest {
     @Override
     public ResponseEntity<String> deleteCommission(Long id) {
         try {
-            return commissionOptionsService.deleteCampaignCategory(id);
+            return commissionOptionsService.deleteCommission(id);
         } catch (Exception e) {
             e.printStackTrace();
         }

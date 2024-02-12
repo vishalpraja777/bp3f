@@ -5,6 +5,7 @@
 }
 
 .myCampaignsContainer button {
+  margin: 10px;
   width: 50%;
 }
 
@@ -31,6 +32,10 @@
   align-items: center;
   border: 1px #ccc;
   border-bottom-style: solid;
+}
+
+.userDonatedTile h4{
+  padding: 0px 8px;
 }
 
 .myCamaignTile img {

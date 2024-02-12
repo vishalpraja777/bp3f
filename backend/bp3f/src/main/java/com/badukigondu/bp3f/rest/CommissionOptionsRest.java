@@ -22,7 +22,7 @@ public interface CommissionOptionsRest {
     @GetMapping(path = "/getAll")
     public ResponseEntity<List<CommissionOptions>> getAllCommission();
 
-    @DeleteMapping(path = "/delete/{id}")
+    @PostMapping(path = "/delete/{id}")
     public ResponseEntity<String> deleteCommission(@PathVariable Long id);
 
 }

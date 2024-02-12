@@ -50,14 +50,14 @@ const UsersControl = () => {
                         }
                         {!isUsersLoading &&
                             <div>
-                                {(users.length == 0) ? <div>
+                                {(users.filter(users => users.status === 'ACTIVE').length == 0) ? <div>
                                     <p>No Users</p>
-                                </div>:
-                                users
-                            .filter(users => users.status === 'ACTIVE')
-                            .map((user) => (
-                                <UsersListTile key={user.id} user={user} />
-                                ))}
+                                </div> :
+                                    users
+                                        .filter(users => users.status === 'ACTIVE')
+                                        .map((user) => (
+                                            <UsersListTile key={user.id} user={user} />
+                                        ))}
                             </div>
                         }
                     </div>
@@ -68,21 +68,21 @@ const UsersControl = () => {
                         }
                         {!isUsersLoading &&
                             <div>
-                                {(users.length == 0) ? <div>
+                                {(users.filter(users => users.status === 'DEACTIVE').length == 0) ? <div>
                                     <p>No Users</p>
-                                </div>:
-                                users
-                            .filter(users => users.status === 'DEACTIVE')
-                            .map((user) => (
-                                <UsersListTile key={user.id} user={user} />
-                                ))}
+                                </div> :
+                                    users
+                                        .filter(users => users.status === 'DEACTIVE')
+                                        .map((user) => (
+                                            <UsersListTile key={user.id} user={user} />
+                                        ))}
                             </div>
                         }
                     </div>
                 </div>
-                </div>
             </div>
-            );
+        </div>
+    );
 }
 
-            export default UsersControl;
+export default UsersControl;

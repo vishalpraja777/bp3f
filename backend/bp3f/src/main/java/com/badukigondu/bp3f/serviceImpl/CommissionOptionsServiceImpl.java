@@ -26,12 +26,12 @@ public class CommissionOptionsServiceImpl implements CommissionOptionsService {
     JwtUtil jwtUtil;
 
     @Override
-    public ResponseEntity<String> addCampaignCategory(Map<String, String> requestMap) {
+    public ResponseEntity<String> addCommission(Map<String, String> requestMap) {
 
         try {
             if (jwtUtil.isAdmin()) {
                 commissionOptionsDao.save(getCommissionOptionsFromMap(requestMap));
-                return Bp3fUtils.getResponseEntity("Category Added Successfully", HttpStatus.OK);
+                return Bp3fUtils.getResponseEntity("Commission Added Successfully", HttpStatus.OK);
             } else {
                 return Bp3fUtils.getResponseEntity(Bp3fConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
@@ -44,14 +44,14 @@ public class CommissionOptionsServiceImpl implements CommissionOptionsService {
     private CommissionOptions getCommissionOptionsFromMap(Map<String, String> requestMap) {
         CommissionOptions commissionOptions = new CommissionOptions();
 
-        commissionOptions.setCommisionValue(Long.parseLong(requestMap.get("commission")));
+        commissionOptions.setCommissionValue(Long.parseLong(requestMap.get("commission")));
         commissionOptions.setStatus(true);
 
         return commissionOptions;
     }
 
     @Override
-    public ResponseEntity<List<CommissionOptions>> getAllCampaignCategory() {
+    public ResponseEntity<List<CommissionOptions>> getAllCommission() {
         try {
             if (jwtUtil.isAdmin()) {
                 return new ResponseEntity<>(commissionOptionsDao.findAll(), HttpStatus.OK);
@@ -65,11 +65,11 @@ public class CommissionOptionsServiceImpl implements CommissionOptionsService {
     }
 
     @Override
-    public ResponseEntity<String> deleteCampaignCategory(Long id) {
+    public ResponseEntity<String> deleteCommission(Long id) {
         try {
             if (jwtUtil.isAdmin()) {
                 commissionOptionsDao.deleteById(id);
-                return Bp3fUtils.getResponseEntity("Category Deleted Successfully", HttpStatus.OK);
+                return Bp3fUtils.getResponseEntity("Commission Deleted Successfully", HttpStatus.OK);
             } else {
                 return Bp3fUtils.getResponseEntity(Bp3fConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }

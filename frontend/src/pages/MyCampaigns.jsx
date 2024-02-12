@@ -50,7 +50,7 @@ const MyCampaigns = () => {
                     <div className="myCampaignsContainer">
                         <div className="rowForMyCampaignTile">
                             {campaigns.map((campaign) => (
-                                <MyCampaignTile key={campaign.id} campaign={campaign} />
+                                <MyCampaignTile key={campaign.id} campaign={campaign} admin={false}/>
                             ))}
                         </div>
                         <div>

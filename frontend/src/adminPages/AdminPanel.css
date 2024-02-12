@@ -54,12 +54,49 @@
 /* Users List */
 
 .usersList {
-    width: 800px;
+    width: 700px;
     margin: 10px auto;
+}
+
+.usersList h3, .usersList p{
+    padding: 6px;
 }
 
 .tileLeft .profilePic {
     border-radius: 50px;
     max-width: 50px;
     aspect-ratio: 1/1;
+}
+
+.backButton{
+    margin: auto;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+}
+.backButton i{
+    flex: 1;
+    padding: 10px;
+    font-size: large;
+}
+.backButton h1{
+    flex: 1;
+}
+
+.commissionOptionsTile{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 8px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    align-items: center;
+    border: 1px #ccc;
+    border-bottom-style: solid;
+}
+
+.tileRight i:hover{
+    transform: scale(1.2);
+    cursor: pointer;
 }

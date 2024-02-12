@@ -83,7 +83,7 @@ const UsersListTile = ({ user }) => {
                                 <span className="slider round"></span>
                             </label>
                         </div>
-                        <button className="signupBtn btn" onClick={(e) => { navigate("/viewUserById/" + userId) }}>View</button>
+                        <button className="signupBtn btn" onClick={(e) => { navigate("/viewUserByAdmin/" + userId) }}>View</button>
                         {/* <button className="signupBtn btn" onClick={(e) => { handleDeleteCampaign(e) }}>Delete</button> */}
                     </div>
                 }

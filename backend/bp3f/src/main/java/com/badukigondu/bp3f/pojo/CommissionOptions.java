@@ -28,7 +28,7 @@ public class CommissionOptions implements Serializable  {
     private Long id;
 
     @Column(name = "commision_value")
-    private Long commisionValue;
+    private Long commissionValue;
 
     @Column(name = "status")
     private boolean status;

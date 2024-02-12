@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.badukigondu.bp3f.constants.Bp3fConstants;
+import com.badukigondu.bp3f.pojo.User;
 import com.badukigondu.bp3f.rest.UserRest;
 import com.badukigondu.bp3f.service.UserService;
 import com.badukigondu.bp3f.utils.Bp3fUtils;
@@ -95,6 +96,16 @@ public class UserRestImpl implements UserRest {
             e.printStackTrace();
         }
         return Bp3fUtils.getResponseEntity(Bp3fConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<UserWrapper> findById(Long id) {
+        try {
+            return userService.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new UserWrapper(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
