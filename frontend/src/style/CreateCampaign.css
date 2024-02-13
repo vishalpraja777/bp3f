@@ -42,7 +42,7 @@
 .greenBtn{
     background-color: var(--greenBtnColor);
     color: var(--btnInClr);
-    margin: 5px 0px;
+    margin: 5px;
 }
 
 .loadingContainer{

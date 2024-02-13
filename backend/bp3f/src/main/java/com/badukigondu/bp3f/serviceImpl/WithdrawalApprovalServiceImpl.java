@@ -24,6 +24,7 @@ import com.badukigondu.bp3f.pojo.WithdrawalRequest;
 import com.badukigondu.bp3f.service.WithdrawalApprovalService;
 import com.badukigondu.bp3f.utils.Bp3fUtils;
 import com.badukigondu.bp3f.wrapper.WithdrawalApprovalWrapper;
+import com.badukigondu.bp3f.wrapper.WithdrawalRequestWrapper;
 
 @Service
 public class WithdrawalApprovalServiceImpl implements WithdrawalApprovalService {
@@ -85,9 +86,10 @@ public class WithdrawalApprovalServiceImpl implements WithdrawalApprovalService 
 
         withdrawalApproval.setUser(withdrawalRequest.getUser());
 
-        Long amountWithdrawn = campaignDao.findById(withdrawalRequest.getCampaign().getId()).get().getAmountWithdrawn() + withdrawalRequest.getWithdrawAmount();
+        Long amountWithdrawn = campaignDao.findById(withdrawalRequest.getCampaign().getId()).get().getAmountWithdrawn()
+                + withdrawalRequest.getWithdrawAmount();
 
-        campaignDao.updateAmountWithdrawn(amountWithdrawn,withdrawalRequest.getCampaign().getId());
+        campaignDao.updateAmountWithdrawn(amountWithdrawn, withdrawalRequest.getCampaign().getId());
 
         return withdrawalApproval;
 
@@ -97,6 +99,28 @@ public class WithdrawalApprovalServiceImpl implements WithdrawalApprovalService 
     public ResponseEntity<List<WithdrawalApprovalWrapper>> getByCampaignId(Long campaigId) {
         try {
             return new ResponseEntity<>(withdrawalApprovalDao.findByCampaignId(campaigId), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<List<WithdrawalApprovalWrapper>> getAll() {
+        try {
+            List<WithdrawalApproval> withdrawalApprovals = withdrawalApprovalDao.findAll();
+
+            List<WithdrawalApprovalWrapper> withdrawalApprovalWrappers = new ArrayList<>();
+
+            for (WithdrawalApproval withdrawalApproval : withdrawalApprovals) {
+                withdrawalApprovalWrappers.add(new WithdrawalApprovalWrapper(withdrawalApproval.getId(),
+                        withdrawalApproval.getWithdrawAmount(),
+                        withdrawalApproval.isApprovedStatus(),
+                        withdrawalApproval.getApprovedDate(), withdrawalApproval.getCampaign(),
+                        withdrawalApproval.getUser()));
+            }
+
+            return new ResponseEntity<>(withdrawalApprovalWrappers, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }

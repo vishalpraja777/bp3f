@@ -40,5 +40,15 @@ public class WithdrawalApprovalRestImpl implements WithdrawalApprovalRest {
         }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @Override
+    public ResponseEntity<List<WithdrawalApprovalWrapper>> getAll() {
+        try {
+             return withdrawalApprovalService.getAll();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     
 }

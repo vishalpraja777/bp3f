@@ -122,4 +122,22 @@ public class WithdrawalRequestServiceImpl implements WithdrawalRequestService {
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    public ResponseEntity<List<WithdrawalRequestWrapper>> getAll() {
+        try {
+            List<WithdrawalRequest> withdrawalRequests = withdrawalRequestDao.findAll();
+
+            List<WithdrawalRequestWrapper> withdrawalRequestWrapper = new ArrayList<>();
+
+            for(WithdrawalRequest withdrawalRequest : withdrawalRequests){
+                withdrawalRequestWrapper.add(new WithdrawalRequestWrapper(withdrawalRequest.getId(), withdrawalRequest.getWithdrawAmount(), withdrawalRequest.getApproved(), withdrawalRequest.getRequestDate(), withdrawalRequest.getCampaign(), withdrawalRequest.getUser()));
+            }
+
+            return new ResponseEntity<>(withdrawalRequestWrapper, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

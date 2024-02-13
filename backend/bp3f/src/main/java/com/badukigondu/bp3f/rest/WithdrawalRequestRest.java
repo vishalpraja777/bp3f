@@ -21,4 +21,7 @@ public interface WithdrawalRequestRest {
     @GetMapping(path="/getByCampaignId/{campaigId}")
     ResponseEntity<List<WithdrawalRequestWrapper>> getByCampaignId(@PathVariable(name = "campaigId") Long campaigId);
 
+    @GetMapping(path="/getAll")
+    ResponseEntity<List<WithdrawalRequestWrapper>> getAll();
+
 }

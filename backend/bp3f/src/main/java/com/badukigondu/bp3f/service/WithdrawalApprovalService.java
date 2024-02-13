@@ -12,5 +12,7 @@ public interface WithdrawalApprovalService {
     ResponseEntity<String> addWithdrawApproval(Map<String, String> requestMap);
 
     ResponseEntity<List<WithdrawalApprovalWrapper>> getByCampaignId(Long campaigId);
+
+    ResponseEntity<List<WithdrawalApprovalWrapper>> getAll();
     
 }

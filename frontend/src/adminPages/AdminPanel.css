@@ -54,7 +54,8 @@
 /* Users List */
 
 .usersList {
-    width: 700px;
+    text-align: center;
+    width: 600px;
     margin: 10px auto;
 }
 
@@ -99,4 +100,22 @@
 .tileRight i:hover{
     transform: scale(1.2);
     cursor: pointer;
+}
+
+.withdraw{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 8px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    align-items: center;
+    border: 1px #ccc;
+    display: flex;
+    /* border-bottom-style: solid; */
+}
+
+.optionsContainer{
+    text-align: center;
 }

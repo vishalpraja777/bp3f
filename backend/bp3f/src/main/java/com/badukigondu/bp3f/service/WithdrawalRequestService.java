@@ -12,5 +12,7 @@ public interface WithdrawalRequestService {
     ResponseEntity<String> addWithdrawalRequest(Map<String, String> requestMap);
 
     ResponseEntity<List<WithdrawalRequestWrapper>> getByCampaignId(Long campaigId);
+
+    ResponseEntity<List<WithdrawalRequestWrapper>> getAll();
     
 }
