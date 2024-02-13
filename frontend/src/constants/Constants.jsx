@@ -22,7 +22,7 @@ const waColor = "#25d366"
 export const BASE_API_URL = "http://localhost:8080/"
 // export const BASE_API_URL = "http://13.235.185.164:8080/"
 
-export const genderOptions = ["Male", "Female", "Other"];;
+export const genderOptions = ["Male", "Female", "Other"];
 
 export const categoryOptions = ["Medical", "Food", "Other"];
 

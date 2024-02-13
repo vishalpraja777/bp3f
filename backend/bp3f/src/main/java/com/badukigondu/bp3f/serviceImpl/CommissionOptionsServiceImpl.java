@@ -53,11 +53,11 @@ public class CommissionOptionsServiceImpl implements CommissionOptionsService {
     @Override
     public ResponseEntity<List<CommissionOptions>> getAllCommission() {
         try {
-            if (jwtUtil.isAdmin()) {
+            // if (jwtUtil.isAdmin()) {
                 return new ResponseEntity<>(commissionOptionsDao.findAll(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
-            }
+            // } else {
+            //     return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
+            // }
         } catch (Exception e) {
             e.printStackTrace();
         }

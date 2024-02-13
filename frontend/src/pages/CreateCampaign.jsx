@@ -27,7 +27,7 @@ const CreateCampaign = () => {
 
     const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/*"];
 
-    const options = categoryOptions;
+    const [options, setOptions] = useState([]);
 
     const handleCreateSubmit = async (e) => {
         e.preventDefault();
@@ -209,6 +209,11 @@ const CreateCampaign = () => {
         if (!localStorage.getItem("jwtToken")) {
             navigate("/login");
         }
+
+        const categoryUrl = BASE_API_URL + "campaignCategory/getAll"
+
+        axios.get(categoryUrl).then((response) => setOptions(response.data)).catch((error) => console.log(error.response.data))
+
     })
 
 
@@ -227,13 +232,15 @@ const CreateCampaign = () => {
                         {/* Category Select */}
                         <select onChange={(e) => { setCategory(e.target.value) }} className="selectOptions">
                             <option>--Category--</option>
-                            {options.map((option, index) => {
+                            {options.sort((a,b) => {return a.category - b.category}).map((option, index) => {
                                 return (
-                                    <option value={option} key={index}>
-                                        {option}
+                                    <option value={option.category} key={index}>
+                                        {option.category}
                                     </option>
                                 );
                             })}
+                            <option>Other</option>
+
                         </select>
 
                         <textarea name="description" id="descriptionIp" rows="6" placeholder="Enter the description"

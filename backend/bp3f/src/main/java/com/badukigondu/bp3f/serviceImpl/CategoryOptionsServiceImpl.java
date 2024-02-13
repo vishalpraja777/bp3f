@@ -54,11 +54,11 @@ public class CategoryOptionsServiceImpl implements CategoryOptionsService {
     public ResponseEntity<List<CategoryOptions>> getAllCampaignCategory() {
 
         try {
-            if (jwtUtil.isAdmin()) {
+            // if (jwtUtil.isAdmin()) {
                 return new ResponseEntity<>(categoryOptionsDao.findAll(), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
-            }
+            // } else {
+            //     return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
+            // }
         } catch (Exception e) {
             e.printStackTrace();
         }

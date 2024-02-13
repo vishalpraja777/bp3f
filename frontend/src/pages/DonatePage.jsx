@@ -36,7 +36,7 @@ const DonatePage = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const options = commissionOptions;
+    const [options, setOptions] = useState([]);
 
     const handleDonateSubmit = async (e) => {
         e.preventDefault();
@@ -141,6 +141,10 @@ const DonatePage = () => {
             console.error("Error: ", error.response.data);
         }
 
+        const categoryUrl = BASE_API_URL + "commission/getAll"
+
+        axios.get(categoryUrl).then((response) => setOptions(response.data)).catch((error) => console.log(error.response.data))
+
     }, []);
 
     const handleAmountChange = (e) => {
@@ -180,10 +184,10 @@ const DonatePage = () => {
                             <p style={{ margin: "0px 20px", textAlign: "start" }}>BP3F charges NO fees. We rely on donors like you to cover for our expenses. Kindly consider a tip Thank you</p>
                             <select onChange={(e) => { handleCommissionChange(e) }} className="selectOptions">
                                 <option>--Commission--</option>
-                                {options.map((option, index) => {
+                                {options.sort((a,b) => {return a.commissionValue -b.commissionValue}).map((option, index) => {
                                     return (
-                                        <option value={option} key={index}>
-                                            {option}%
+                                        <option value={option.commissionValue} key={index}>
+                                            {option.commissionValue}%
                                         </option>
                                     );
                                 })}

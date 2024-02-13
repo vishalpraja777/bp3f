@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/user/login", "/user/signup", "/campaign/getAll", "/campaign/get/*", "/usersDonated/add", "/payment/payCampaign/*", "/image/uplaodImage", "/usersDonated/getByCampaignId/*", "/campaignImages/getImageByCampaignId/*", "/user/test" ).permitAll()
+                        .requestMatchers("/user/login", "/user/signup", "/campaign/getAll", "/campaign/get/*", "/usersDonated/add", "/payment/payCampaign/*", "/image/uplaodImage", "/usersDonated/getByCampaignId/*", "/campaignImages/getImageByCampaignId/*", "/user/test", "/campaignCategory/getAll", "/commission/getAll" ).permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling()
                 .and()
