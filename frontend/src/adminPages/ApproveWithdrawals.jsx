@@ -59,19 +59,23 @@ const ApproveWithdrawals = () => {
                     <h2>Withdrawal Requests</h2>
                     <div>
                         <h3>Pending Requests</h3>
-                        {!isWithdrawRequestsLoading && withdrawRequests
-                            .filter(withdrawRequests => withdrawRequests.approved == false)
-                            .map((withdrawRequest) => (
-                                <WithdrawRequestTileAdmin key={withdrawRequest.id} withdrawRequest={withdrawRequest}/>
-                            ))
+                        {withdrawRequests.filter(withdrawRequests => withdrawRequests.approved == false).length == 0 ?
+                            <div>No Pending Requests</div> :
+                            !isWithdrawRequestsLoading && withdrawRequests
+                                .filter(withdrawRequests => withdrawRequests.approved == false)
+                                .map((withdrawRequest) => (
+                                    <WithdrawRequestTileAdmin key={withdrawRequest.id} withdrawRequest={withdrawRequest} />
+                                ))
                         }
                     </div>
                     <div>
                         <h3>Approved Requests</h3>
-                        {!isWithdrawsApprovedLoading && withdrawsApproved
+                        {withdrawsApproved.filter(withdrawsApproved => withdrawsApproved.approvedStatus == true).length == 0 ?
+                            <div>No Requests Approved</div> :
+                        !isWithdrawsApprovedLoading && withdrawsApproved
                             .filter(withdrawsApproved => withdrawsApproved.approvedStatus == true)
                             .map((withdrawApproved) => (
-                                <WithdrawApprovedTileAdmin key={withdrawApproved.id} withdrawApproved={withdrawApproved}/>
+                                <WithdrawApprovedTileAdmin key={withdrawApproved.id} withdrawApproved={withdrawApproved} />
                             ))
                         }
                     </div>

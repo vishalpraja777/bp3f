@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { BASE_API_URL } from "../constants/Constants";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
