@@ -221,7 +221,7 @@ const CreateCampaign = () => {
         <div className="signupContainer">
             <Toaster richColors />
             <div className="signUp">
-                <Link to="/"><i className="fa-solid fa-x"></i></Link>
+                <Link to={-1}><i className="fa-solid fa-x"></i></Link>
                 <div className="createCampaignHead">
                     <h2>Create Campaign</h2>
                 </div>
