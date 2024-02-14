@@ -50,7 +50,7 @@ const CommissionOptionsTile = (props) => {
                 })
                 .catch((error) => {
                     console.log(error.reponse.data)
-                    toast.error("Category Was Deleted");
+                    toast.error("Category Was Not Deleted");
                 })
         }
 

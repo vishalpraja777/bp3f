@@ -50,7 +50,7 @@ public class WebsiteConstantsServiceImpl implements WebsiteConstantsService {
     @Override
     public ResponseEntity<WebsiteConstants> getWebsiteConstantsByKey(String keyColumn) {
         try {
-            return new ResponseEntity<>(websiteConstantsDao.findByKeyColumn(keyColumn), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(websiteConstantsDao.findByKeyColumn(keyColumn), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }

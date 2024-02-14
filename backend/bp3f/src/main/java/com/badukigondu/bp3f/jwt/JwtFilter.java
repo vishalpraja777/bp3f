@@ -32,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-                if(request.getServletPath().matches("/user/login|/user/signup|/campaign/getAll|/campaign/get/[0-9]*|/usersDonated/add|/payment/payCampaign/[0-9]*|/image/uplaodImage|/usersDonated/getByCampaignId/[0-9]*|/campaignImages/getImageByCampaignId/[0-9]*|/user/test|/campaignCategory/getAll|/commission/getAll")){
+                if(request.getServletPath().matches("/user/login|/user/signup|/campaign/getAll|/campaign/get/[0-9]*|/usersDonated/add|/payment/payCampaign/[0-9]*|/image/uplaodImage|/usersDonated/getByCampaignId/[0-9]*|/campaignImages/getImageByCampaignId/[0-9]*|/user/test|/campaignCategory/getAll|/commission/getAll|/websiteConstants/getByKey/Privacy_Policy")){
                     filterChain.doFilter(request, response);    
                 } else{
                     String authorizationHeader = request.getHeader("Authorization");

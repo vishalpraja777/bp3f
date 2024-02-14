@@ -131,3 +131,20 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 }
+
+.privacyControl{
+    padding: 10px;
+    text-align: center;
+    width: 80%;
+}
+
+.privacyControl textarea{
+    width: 90%;
+    padding: 10px;
+    border-radius: 12px;
+    color: #333;
+    resize: vertical;
+    min-height: 70vh;
+    margin: 6px 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
