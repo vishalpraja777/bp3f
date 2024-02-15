@@ -30,7 +30,6 @@ Currently, two official plugins are available:
 - Added user after payment
 - Callback for payment
 - Loading Animation
-- Delete campaign
 - Progress bar -D
 
 - Onclick Image full view -D
