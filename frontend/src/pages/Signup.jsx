@@ -308,7 +308,7 @@ const Signup = () => {
                                 </div>
 
                                 <input type="checkbox" name="accept" id="acceptIp" onChange={handleCheck} />
-                                <label htmlFor="acceptIp">I accept the Terms of Use</label>
+                                <label htmlFor="acceptIp">I accept the <Link to="/privacyPolicy" target="_blank">Privacy Policy</Link></label>
                             </div>
                         </div>
                         <input type="submit" value="Sign Up" className="submitBtn btn" disabled={!agreement} onClick={(e) => { handleSignup(e) }} />

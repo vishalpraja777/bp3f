@@ -1,0 +1,15 @@
+.privacyPolicyPage{
+    max-width: 900px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.privacyPolicyPage p{
+    text-align: justify;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 12px;
+    color: #333;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}

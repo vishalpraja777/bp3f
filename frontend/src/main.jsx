@@ -11,6 +11,7 @@ import './style/CreateCampaign.css'
 import './style/Footer.css'
 import './style/ProfilePage.css'
 import './style/MyCampaign.css'
+import './style/PrivacyPolicy.css'
 import './adminPages/AdminPanel.css'
 
 import '@fortawesome/fontawesome-free/css/all.min.css';

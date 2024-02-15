@@ -24,9 +24,9 @@ Currently, two official plugins are available:
 - Update Campaign
 
 # TODO
-- Form validations for: Sign up, Login, Create Campaign, Donate
-- In campaign creation make category as dropdown
-- Is Anonymous in donate
+- Form validations for: Sign up, Login, Create Campaign, Donate -D
+- In campaign creation make category as dropdown -D
+- Is Anonymous in donate -D
 - Added user after payment
 - Callback for payment
 - Loading Animation
