@@ -39,7 +39,7 @@ Currently, two official plugins are available:
 - Admin Add category fom database -D
 - Razorpay Page 
 
-- AdminPanel
+- AdminPanel -D
 
 - Database:
 - Category - id, category, status -D -iP
